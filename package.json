@@ -6,6 +6,7 @@
   "scripts": {
     "prepare": "tsc",
     "start": "node dist/app.js",
+    "deploy": "gcloud app deploy beekeeper-linking.yaml"
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
