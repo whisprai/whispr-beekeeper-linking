@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const request_1 = __importDefault(require("request"));
 const app = express_1.default();
 module.exports.app = app;
-const port = 3000;
+app.set('port', process.env.PORT || 8080);
 app.use(express_1.default.static('public'));
 app.get('/apple-app-site-association', (req, res) => {
     res.send({
@@ -16,11 +16,21 @@ app.get('/apple-app-site-association', (req, res) => {
             "details": [
                 {
                     "appID": "NG3WB68YZJ.ai.whispr.works",
-                    "paths": ["beekeeperlogin/*"]
+                    "paths": ["*"]
                 }
             ]
         }
     });
+});
+app.get('/.well-known/assetlinks.json', (req, res) => {
+    res.send([{
+            "relation": ["delegate_permission/common.handle_all_urls"],
+            "target": {
+                "namespace": "android_app",
+                "package_name": "ai.whispr.android",
+                "sha256_cert_fingerprints": ["27:DD:6B:18:1C:D5:FB:2B:21:F3:FC:CF:A4:C8:3C:8C:95:12:4E:D4:7D:DE:87:0E:38:D7:39:47:24:D6:FB:79"]
+            }
+        }]);
 });
 app.get('/beekeeperlogin/:userid/:hash', (req, res) => {
     const URL = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + req.originalUrl;
@@ -71,10 +81,10 @@ Or scan this code to download <br>or open from another phone:
         res.send(html);
     });
 });
-app.listen(port, err => {
+app.listen(app.get('port'), err => {
     if (err) {
         return console.error(err);
     }
-    return console.log(`server is listening on ${port}`);
+    return console.log(`server is listening on ${app.get('port')}`);
 });
 //# sourceMappingURL=app.js.map
