@@ -30,7 +30,8 @@ app.get('/.well-known/assetlinks.json', (req, res) => {
       "namespace": "android_app",
       "package_name": "ai.whispr.android",
       "sha256_cert_fingerprints":
-      ["27:DD:6B:18:1C:D5:FB:2B:21:F3:FC:CF:A4:C8:3C:8C:95:12:4E:D4:7D:DE:87:0E:38:D7:39:47:24:D6:FB:79"]
+      ["27:DD:6B:18:1C:D5:FB:2B:21:F3:FC:CF:A4:C8:3C:8C:95:12:4E:D4:7D:DE:87:0E:38:D7:39:47:24:D6:FB:79",
+      "82:B1:A6:E5:A8:84:E2:A8:08:1A:9A:E2:86:F3:BB:C6:A4:8A:FE:B4:94:54:DF:DC:06:4B:2B:FE:D3:70:CC:96"]
     }
   }])
 });
