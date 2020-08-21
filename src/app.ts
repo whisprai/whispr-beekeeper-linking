@@ -12,6 +12,29 @@ app.use(express.static('public'))
 app.get('/apple-app-site-association', (req, res) => {
     res.send({
         "applinks": {
+            "appIDs": [ "NG3WB68YZJ.ai.whispr.works" ],
+            "components": [
+                {
+                    "/": "*",
+                    "comment": "Allow any path after the domain"
+                },
+            ],
+            "apps": [],
+            "details": [
+                {
+                    "appID": "NG3WB68YZJ.ai.whispr.works",
+                    "paths": [ "*" ]
+                }
+            ]
+        }
+    })
+});
+
+// Doesn't work for devices >= iOS 13, see https://developer.apple.com/documentation/safariservices/supporting_associated_domains
+// Remove after above config is proven to work
+/*app.get('/apple-app-site-association', (req, res) => {
+    res.send({
+        "applinks": {
             "apps": [],
             "details": [
                 {
@@ -21,7 +44,7 @@ app.get('/apple-app-site-association', (req, res) => {
             ]
         }
     })
-});
+});*/
 
 app.get('/.well-known/assetlinks.json', (req, res) => {
   res.send([{
